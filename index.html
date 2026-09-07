@@ -46,7 +46,7 @@
   </div>
   <hr>
   <div id="chat-box"></div>
-  <input type="text" id="message-input" placeholder="Type a message..." disabled>
+  <textarea id="message-input" placeholder="Type a message..." disabled></textarea>
   <button id="send-btn" onclick="sendMessage()" disabled>Send</button>
 
   <script>
@@ -100,6 +100,14 @@
       box.innerHTML += `<div class="msg"><strong>${sender}:</strong> ${text}</div>`;
       box.scrollTop = box.scrollHeight;
     }
+
+    document.getElementById('message-input').addEventListener('keydown', function(event) {
+  // Check if Enter is pressed without holding Shift
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault(); // Prevents adding an extra blank line
+    sendMessage(); // Calls your existing send function
+  }
+});
   </script>
 </body>
 </html>
