@@ -2,11 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Private 1 on 1 Peer to Peer Chat</title>
+  <title>Private!</title>
   <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
   <style>
+    /* theme colors */
+  :root {
+  --color1: #241f31;
+  --color2: #f6f5f4;
+  --color3: #ffffff;
+  --color4: #5e5c64;
+}
   /* Remove width limits and remove default browser margins */
   body { 
+    color: var(--color1);
+    background-color: var(--color2);
     font-family: sans-serif; 
     margin: 0; 
     padding: 10px; 
@@ -16,7 +25,8 @@
 
   /* Chat box: full width, 60% of screen height */
   #chat-box { 
-    border: 1px solid #ccc; 
+    background-color: var(--color3);
+    border: 1px solid var(--color2); 
     width: 100%;
     height: 60vh; 
     overflow-y: scroll; 
@@ -27,24 +37,46 @@
 
   /* Typing area: full width, 30% of screen height */
   #message-input {
+    background-color: var(--color3);
+    border-color: var(--color2);
     width: 100%;
-    height: 30vh;
+    height: 25vh;
     box-sizing: border-box;
     padding: 10px;
     resize: none; /* Prevents manual resizing if you convert it to a <textarea> */
+    color: var(--color4);
   }
+  
+  #remote-id{
+    color: var(--color1);
+    background-color: var(--color2);
+    border-color: var(--color2);
+    width: 500px;
+  }
+  
+  #button1{
+    background-color: var(--color3);
+    border-color: var(--color2);
+    color: var(--color4);
+  }
+  
+  #send-btn{
+    background-color: var(--color3);
+    border-color: var(--color2);
+    color: var(--color4);
+  }
+  
 
   .msg { margin: 5px 0; }
 </style>
 </head>
 <body>
-  <h2>Simple P2P Web Chat</h2>
+<!--  <h2>Simple P2P Web Chat</h2> -->
   <div>
     <p><strong>Your Peer ID:</strong> <span id="my-id">Generating...</span></p>
     <input type="text" id="remote-id" placeholder="Paste Remote Peer ID">
-    <button onclick="connectToPeer()">Connect</button>
+    <button id="button1" onclick="connectToPeer()">Connect</button>
   </div>
-  <hr>
   <div id="chat-box"></div>
   <textarea id="message-input" placeholder="Type a message..." disabled></textarea>
   <button id="send-btn" onclick="sendMessage()" disabled>Send</button>
